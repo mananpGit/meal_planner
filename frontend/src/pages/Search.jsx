@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import RecipeCard from "../components/RecipeCard";
 import "./pages.css";
 import axios from "axios";
 
 function Search() {
   const [input, setInput] = useState("");
+  const [recipes, setRecipes] = useState([]);
 
   const handleSearch = (e) => {
     setInput(e.target.value);
@@ -21,7 +23,8 @@ function Search() {
       const res = await axios.get(
         `http://localhost:3000/recipes?query=${input}`
       );
-      console.log(res.data);
+      console.log(res.data.results);
+      setRecipes(res.data.results);
     } catch (e) {
       console.log(e);
     }
@@ -35,6 +38,12 @@ function Search() {
           Search
         </button>
       </form>
+
+      <div>
+        {recipes.map((recipe) => (
+          <RecipeCard image = {recipe.image} title ={recipe.title} key={recipe.id}/>
+        ))}
+      </div>
     </div>
   );
 }
