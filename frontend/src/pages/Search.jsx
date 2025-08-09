@@ -41,7 +41,7 @@ function Search() {
 
       <div className="recipe-grid">
         {recipes.map((recipe) => (
-          <RecipeCard image={recipe.image} title={recipe.title} key={recipe.id}/>
+          <RecipeCard image={recipe.image} title={recipe.title} id={recipe.id} key={recipe.id}/>
         ))}
       </div>
     </div>

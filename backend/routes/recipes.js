@@ -24,4 +24,20 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    try {
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false`, {
+            params: {
+                apiKey: API_KEY,
+            },
+        });
+        res.json(response.data);
+    } catch (e) {
+        console.log(e);
+    }
+});
+
 export default router;
