@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
-import "./pages.css";
+import "./Search.css";
 import axios from "axios";
 
 function Search() {
@@ -39,9 +39,9 @@ function Search() {
         </button>
       </form>
 
-      <div>
+      <div className="recipe-grid">
         {recipes.map((recipe) => (
-          <RecipeCard image = {recipe.image} title ={recipe.title} key={recipe.id}/>
+          <RecipeCard image={recipe.image} title={recipe.title} key={recipe.id}/>
         ))}
       </div>
     </div>
