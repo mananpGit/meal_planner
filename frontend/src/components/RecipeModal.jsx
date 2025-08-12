@@ -1,5 +1,5 @@
 import React from "react";
-import './RecipeModal.css';
+import './styles/RecipeModal.css';
 
 function RecipeModal({ recipe, isOpen, onClose }) {
     if(!isOpen || !recipe) return null;

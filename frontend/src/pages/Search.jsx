@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
 import RecipeModal from "../components/RecipeModal";
-import "./Search.css";
+import "./styles/Search.css";
 import axios from "axios";
 
 function Search() {
