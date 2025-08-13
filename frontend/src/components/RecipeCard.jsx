@@ -1,38 +1,27 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getSavedRecipes, saveRecipe, removeSavedRecipe, isRecipeSaved } from '../utils/local';
 import './styles/RecipeCard.css';
 
 function RecipeCard(props) {
     const [isSaved, setIsSaved] = useState(false);
 
     useEffect(() => {
-        const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-
-        const isRecipeSaved = savedRecipes.some(recipe => recipe.id === props.id);
-
-        setIsSaved(isRecipeSaved);
+        setIsSaved(isRecipeSaved(props.id));
     }, []);
 
-    const handleClick = () => {
-        const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-        
-        let updatedRecipes;
-    
+    const handleClick = () => {    
         if (isSaved) {
-            updatedRecipes = savedRecipes.filter(recipe => {
-            return recipe.id !== props.id;
-        });
+            removeSavedRecipe(props.id);
         } else {
-            updatedRecipes = [...savedRecipes, {
+            const recipeToSave = {
                 id: props.id,
                 title: props.title,
                 image: props.image
-            }];
+            };
+            saveRecipe(recipeToSave);
         }
-
-        localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
-
         setIsSaved(!isSaved);
     };
 
