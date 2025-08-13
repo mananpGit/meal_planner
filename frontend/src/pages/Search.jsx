@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
-import RecipeModal from "../components/RecipeModal";
 import "./styles/Search.css";
 import axios from "axios";
 
@@ -33,21 +32,21 @@ function Search() {
     }
   }
 
-  const getRecipeDetails = async (recipeId) => {
-        try {
-            const res = await axios.get(`http://localhost:3000/recipes/${recipeId}`);
-            console.log(res.data);
-            return res.data;
-        } catch (e) {
-            console.log(e);
-        }
-    };
+  // const getRecipeDetails = async (recipeId) => {
+  //       try {
+  //           const res = await axios.get(`http://localhost:3000/recipes/${recipeId}`);
+  //           console.log(res.data);
+  //           return res.data;
+  //       } catch (e) {
+  //           console.log(e);
+  //       }
+  //   };
 
-    const handleViewDetails = async (recipeId) => {
-        const details = await getRecipeDetails(recipeId);
-        setSelectedRecipe(details);
-        setShowModal(true);
-    };
+  //   const handleViewDetails = async (recipeId) => {
+  //       const details = await getRecipeDetails(recipeId);
+  //       setSelectedRecipe(details);
+  //       setShowModal(true);
+  //   };
 
   return (
     <div>
@@ -64,15 +63,15 @@ function Search() {
             image={recipe.image}
             title={recipe.title} id={recipe.id}
             key={recipe.id} 
-            onViewDetails={handleViewDetails}/>
+            /* onViewDetails={handleViewDetails} *//>
         ))}
       </div>
 
-      <RecipeModal 
+      {/* <RecipeModal 
         recipe={selectedRecipe}
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-      />
+      /> */}
     </div>
   );
 }
