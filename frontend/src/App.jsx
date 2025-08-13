@@ -1,14 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import HomePage from './pages/HomePage';
 import Search from "./pages/Search";
+import SavedRecipes from './pages/SavedRecipes';
 import './App.css'
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
 
   return (
     <>
-      <Search />
+            {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
+            {currentPage === 'search' && <Search onNavigate={setCurrentPage} />}
+            {currentPage === 'saved' && <SavedRecipes onNavigate={setCurrentPage} />}
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
-import getSavedRecipes from "../utils/local"
+import {getSavedRecipes} from "../utils/local";
+import "./styles/SavedRecipes.css";
 
 function SavedRecipes() {
     const [saved, setSaved] = useState([]);
@@ -10,20 +11,22 @@ function SavedRecipes() {
     }, []);
 
     return (
+        <>
+        <h1>Your Recipes</h1>
         <div className="saved-grid">
-            <h1>Your Saved Recipes</h1>
-            {saved ? (
-                saved.map((recipe) => {
+            {saved.length > 0 ? (
+                saved.map((recipe) => (
                 <RecipeCard
                     key={recipe.id}
                     id={recipe.id}
                     image={recipe.image}
                     title={recipe.title}
-                />})
+                />))
             ) : (
                 <h2>No Recipes Saved</h2> 
             )}
         </div>
+        </>
     );
 }
 

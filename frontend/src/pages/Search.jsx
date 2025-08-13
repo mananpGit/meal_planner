@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
-import "./styles/Search.css";
 import axios from "axios";
+import "./styles/Search.css";
 
 function Search() {
   const [input, setInput] = useState("");
