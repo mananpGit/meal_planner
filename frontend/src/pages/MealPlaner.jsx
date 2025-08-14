@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getSavedRecipes } from "../utils/local";
 
 function MealPlaner() {
     const createEmptyWeek = () => {
@@ -23,7 +24,9 @@ function MealPlaner() {
             </div>
 
             <div className="weekly-grid">
-
+                {Object.keys(mealPlan).map((day) => {
+                    // day component that takes in each meal as prop
+                })}
             </div>
 
         </div>
