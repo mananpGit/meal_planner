@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { getSavedRecipes } from "../utils/local";
+import DayCard from "../components/DayCard";
+import "./styles/MealPlanner.css";
 
-function MealPlaner() {
+function MealPlanner() {
     const createEmptyWeek = () => {
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         const emptyWeek = {};
@@ -26,6 +28,7 @@ function MealPlaner() {
             <div className="weekly-grid">
                 {Object.keys(mealPlan).map((day) => {
                     // day component that takes in each meal as prop
+                    return <DayCard dayName={day} meals={mealPlan[day]}/>
                 })}
             </div>
 
@@ -33,4 +36,4 @@ function MealPlaner() {
     );
 }
 
-export default MealPlaner;
+export default MealPlanner;
