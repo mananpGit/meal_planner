@@ -4,10 +4,10 @@
 .day-container {
   background: white;
   border-radius: 8px;
-  padding: 12px;
+  padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #e9ecef;
-  min-height: 220px;
+  height: 180px;
   display: flex;
   flex-direction: column;
 }
@@ -27,23 +27,25 @@
 .meals {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   flex-grow: 1;
+  height: 100%;
 }
 
 .meals > div {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px dashed #bdc3c7;
-  min-height: 45px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px dashed #bdc3c7;
+  min-height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #fdfdfd;
   transition: all 0.2s ease;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #34495e;
+  flex: 1;
 }
 
 .meals > div:hover {
