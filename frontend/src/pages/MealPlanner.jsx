@@ -23,6 +23,16 @@ function MealPlanner() {
         setSaved(getSavedRecipes());
     }, []);
 
+    const updateMealPlan = (dayName, mealType, recipe) => {
+        setMealPlan(prevPlan => ({
+            ...prevPlan,
+            [dayName]: {
+            ...prevPlan[dayName],
+            [mealType]: recipe
+        }
+        }))
+    };
+
     return (
         <div className="meal-planner">
             <h1>Weekly Meal Planner</h1>
@@ -30,7 +40,14 @@ function MealPlanner() {
             <div className="saved-list">
                 {saved.length > 0 ? (
                     saved.map((recipe) => (
-                        <div  key={recipe.id} className="sidebar-recipe-item" draggable={true}>
+                        <div  
+                            key={recipe.id} className="sidebar-recipe-item" 
+                            draggable={true}
+                            onDragStart={(e) => {
+                                e.dataTransfer.setData("application/json", JSON.stringify(recipe));
+                                e.dataTransfer.effectAllowed = "copy";
+                            }}
+                        >
                             <img src={recipe.image} alt={recipe.title} />
                             <span>{recipe.title}</span>
                         </div>
@@ -43,7 +60,7 @@ function MealPlanner() {
             <div className="weekly-grid">
                 {Object.keys(mealPlan).map((day) => {
                     // day component that takes in each meal as prop
-                    return <DayCard dayName={day} meals={mealPlan[day]}/>
+                    return <DayCard dayName={day} meals={mealPlan[day]} onUpdateMeal={updateMealPlan}/>
                 })}
             </div>
 
