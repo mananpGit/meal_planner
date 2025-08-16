@@ -25,7 +25,9 @@ function DayCard(props) {
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e, 'breakfast')}
             >
-            Breakfast: <button>{ breakfast.title }</button></div>
+            Breakfast:
+            <img src={breakfast.image} width="50" height="50"></img>
+            <button>{ breakfast.title }</button></div>
         ) : (
           <div
             onDragOver={(e) => e.preventDefault()}
@@ -38,7 +40,9 @@ function DayCard(props) {
             <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e, 'lunch')}
-            >Lunch: <button>{ lunch.title }</button></div>
+            >Lunch:
+            <img src={lunch.image} width="50" height="50"></img> 
+            <button>{ lunch.title }</button></div>
         ) : (
           <div
             onDragOver={(e) => e.preventDefault()}
@@ -51,7 +55,9 @@ function DayCard(props) {
             <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e, 'dinner')}
-            >Dinner: <button>{ dinner.title }</button></div>
+            >Dinner:
+            <img src={dinner.image} width="50" height="50"></img>
+            <button>{ dinner.title }</button></div>
         ) : (
           <div
             onDragOver={(e) => e.preventDefault()}
