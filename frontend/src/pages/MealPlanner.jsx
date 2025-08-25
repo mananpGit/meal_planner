@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getSavedRecipes } from "../utils/local";
+import axios from "axios";
 import DayCard from "../components/DayCard";
 import "./styles/MealPlanner.css";
 
@@ -32,6 +33,33 @@ function MealPlanner() {
         }
         }))
     };
+
+    const [cache, setCache] = useState({});
+    const [view, setView] = useState("card");
+
+    async function getNutrition(id) {
+        try {
+            const res = await axios.get(`http://localhost:3000/recipes/${id}/nutrition`);
+            setCache(oldCache => ({
+                ...oldCache,
+                [id]: res.data
+            }))
+
+            return res.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async function handleView(id) {
+        setView("nutrition")
+        if(id in cache) {
+            return cache[id];
+        } else {
+            const result = await getNutrition(id);
+            return result;
+        }
+    }
 
     return (
         <div className="meal-planner">
