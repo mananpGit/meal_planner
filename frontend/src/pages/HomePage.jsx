@@ -5,7 +5,7 @@ import "./styles/HomePage.css"
 function HomePage(props) {
     return (
         <div className="home">
-            <h1>Welcome to Mealer</h1>
+            <h1>Welcome to MealMate</h1>
             <p>A place to plan your meals!</p>
 
             <div className="options">

@@ -1,16 +1,13 @@
 import "./styles/DayCard.css";
 
 function DayCard(props) {
-  const breakfast = props.meals.breakfast;
-  const lunch = props.meals.lunch;
-  const dinner = props.meals.dinner;
-
+  const mealTypes = ["breakfast", "lunch", "dinner"];
 
   const handleDrop = (e, mealType) => {
     e.preventDefault();
     const recipeData = e.dataTransfer.getData("application/json");
     const recipe = JSON.parse(recipeData);
-    
+
     // Call the function passed from parent
     props.onUpdateMeal(props.dayName, mealType, recipe);
   };
@@ -18,53 +15,35 @@ function DayCard(props) {
   return (
     <div className="day-container">
       <h3>{props.dayName}</h3>
-      
+
       <div className="meals">
-        {breakfast != null ? ( 
+        {mealTypes.map((mealType) => {
+          const currentMeal = props.meals[mealType]; // This gets breakfast/lunch/dinner data
+
+          return (
             <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'breakfast')}
+              key={mealType}
+              className="meal-slot" // Add a CSS class for styling
+              onDragOver={(e) => e.preventDefault()} // Move these to the outer div
+              onDrop={(e) => handleDrop(e, mealType)}
             >
-            Breakfast:
-            <img src={breakfast.image} width="50" height="50"></img>
-            <button>{ breakfast.title }</button></div>
-        ) : (
-          <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'breakfast')}
-          >
-          <h4>Breakfast: Add a recipe</h4></div>
-        )}
-
-        {lunch != null ? ( 
-            <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'lunch')}
-            >Lunch:
-            <img src={lunch.image} width="50" height="50"></img> 
-            <button>{ lunch.title }</button></div>
-        ) : (
-          <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'lunch')}
-          > 
-            <h4>Lunch: Add a recipe</h4></div>
-        )}
-
-         {dinner != null ? ( 
-            <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'dinner')}
-            >Dinner:
-            <img src={dinner.image} width="50" height="50"></img>
-            <button>{ dinner.title }</button></div>
-        ) : (
-          <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => handleDrop(e, 'dinner')}
-          > 
-            <h4>Dinner: Add a recipe</h4></div>
-        )}
+              {currentMeal != null ? (
+                <div>
+                  {mealType.charAt(0).toUpperCase() + mealType.slice(1)}:
+                  <img src={currentMeal.image} width="50" height="50"></img>
+                  <button>{currentMeal.title}</button>
+                </div>
+              ) : (
+                <div>
+                  <h4>
+                    {mealType.charAt(0).toUpperCase() + mealType.slice(1)}: Add
+                    a recipe
+                  </h4>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
