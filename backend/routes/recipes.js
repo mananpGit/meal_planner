@@ -44,7 +44,7 @@ router.get('/:id/nutrition', async (req, res) => {
     const id = req.params.id;
 
     try {
-        const response = axios.get(`https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`, {
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`, {
             params: {
                 apiKey: API_KEY,
             },

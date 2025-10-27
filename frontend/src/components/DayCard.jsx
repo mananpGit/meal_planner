@@ -12,6 +12,19 @@ function DayCard(props) {
     props.onUpdateMeal(props.dayName, mealType, recipe);
   };
 
+  const handleShowNutrition = async (mealType, recipe) => {
+  try {
+    const response = await fetch(`http://localhost:3000/recipes/${recipe.id}/nutrition`);
+    const nutritionData = await response.json();
+    
+    console.log("Nutrition data:", nutritionData);
+    // We'll use this data next!
+    
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
   return (
     <div className="day-container">
       <h3>{props.dayName}</h3>
@@ -31,7 +44,7 @@ function DayCard(props) {
                 <div>
                   {mealType.charAt(0).toUpperCase() + mealType.slice(1)}:
                   <img src={currentMeal.image} width="50" height="50"></img>
-                  <button>{currentMeal.title}</button>
+                  <button onClick={() => handleShowNutrition(mealType, currentMeal)}>{currentMeal.title}</button>
                 </div>
               ) : (
                 <div>
